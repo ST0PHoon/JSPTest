@@ -58,4 +58,12 @@ public class ProductRepository {
 	public List<Product> getAllProducts() {
 		return products;
 	}
+	
+	public Product getProductById(String id) {
+		// List -> Steam (데이터의 흐름)
+		return products.stream()
+					.filter((product) -> product.getId().equals(id))	// 조건 
+					.findFirst()	// 첫번째 값
+					.get();	// 얻어오기
+	}
 }

@@ -56,11 +56,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getUnitprice() {
+	public int getUnitPrice() {
 		return unitprice;
 	}
 
-	public void setUnitprice(int unitprice) {
+	public void setUnitPrice(int unitprice) {
 		this.unitprice = unitprice;
 	}
 
