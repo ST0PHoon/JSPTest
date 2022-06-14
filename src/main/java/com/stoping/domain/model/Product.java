@@ -12,28 +12,28 @@ public class Product {
 	public static void main(String[] args) {
 		Product product = new Product("33", "33", 11);
 		System.out.println(product);
-		
+
 		Product product2 = new Product("33", "33", 11);
 		System.out.println(product2);
-		
+
 		// == : 주소비교, hasCode()가 같아야한다. 내용이 같더라도 다를 수 있다.
-		// equals : Object 로 받아와서 비교,  모든 클래스는 Object(타입을 가리지 않음)를 상속받는다.(extends),
+		// equals : Object 로 받아와서 비교, 모든 클래스는 Object(타입을 가리지 않음)를 상속받는다.(extends),
 		// Object object = new Product("33", "33", 11); 도 가능하다.
 		// product.equals(product2); // true - 재정의함
-		// product.hashCode() == product2.hashCode(); //true 재정의 
+		// product.hashCode() == product2.hashCode(); //true 재정의
 		// product == product2 // false
 	}
-	
+
 	private String id;
 	private String name;
 	private int unitprice;
 	private String description;
 	private String manufacturer;
 	private String category;
-	private long unitInStock;
+	private long unitsInStock;
 	private String condition;
-	
-	//overload - 똑같은 이름의 메소드를 인자만 다르게해서 받음 / override 재정의
+
+	// overload - 똑같은 이름의 메소드를 인자만 다르게해서 받음 / override 재정의
 	public Product(String id, String name, int unitprice) {
 		this.id = id;
 		this.name = name;
@@ -88,12 +88,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public long getUnitInStock() {
-		return unitInStock;
+	public long getUnitsInStock() {
+		return unitsInStock;
 	}
 
-	public void setUnitInStock(long unitInStock) {
-		this.unitInStock = unitInStock;
+	public void setUnitsInStock(long unitInStock) {
+		this.unitsInStock = unitInStock;
 	}
 
 	public String getCondition() {
@@ -103,8 +103,6 @@ public class Product {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -126,10 +124,8 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", unitprice=" + unitprice + ", description=" + description
-				+ ", manufacturer=" + manufacturer + ", category=" + category + ", unitInStock=" + unitInStock
+				+ ", manufacturer=" + manufacturer + ", category=" + category + ", unitsInStock=" + unitsInStock
 				+ ", condition=" + condition + "]";
 	}
-	
-	
-	
+
 }

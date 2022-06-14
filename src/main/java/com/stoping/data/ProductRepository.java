@@ -27,26 +27,36 @@ public class ProductRepository {
 	
 	private List<Product> products = new ArrayList<>();
 	
-	public ProductRepository() {
+	//싱글턴 패턴
+	// 1. static 인스턴스 준비
+	// 2. static 매서드로 인스턴스 리턴 (getInstance() 이름을 주로 씀)
+	// 3. 생성자 막기 (private)
+	private static ProductRepository instance = new ProductRepository();
+	
+	public static ProductRepository getInstance() {
+		return instance;
+	}
+	
+	private ProductRepository() {
 		Product phone = new Product("P1234", "iPhone 6s", 800000);
 		phone.setDescription("4.7-inch, 1334x750 Retina HD display");
 		phone.setCategory("Smart Phone");
 		phone.setManufacturer("Apple");
-		phone.setUnitInStock(1000);
+		phone.setUnitsInStock(1000);
 		phone.setCondition("New");
 		
 		Product notebook = new Product("P1235", "LG PC 그램", 1500000);
 		notebook.setDescription("!4.7-inch, 1334x750 Retina HD display");
 		notebook.setCategory("!Smart Phone");
 		notebook.setManufacturer("!Apple");
-		notebook.setUnitInStock(1000);
+		notebook.setUnitsInStock(1000);
 		notebook.setCondition("Refubished");
 		
 		Product tablet = new Product("P1236", "Galaxy Tab S", 900000);
 		tablet.setDescription("?4.7-inch, 1334x750 Retina HD display");
 		tablet.setCategory("?Smart Phone");
 		tablet.setManufacturer("?Apple");
-		tablet.setUnitInStock(1000);
+		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
 		
 		products.add(phone);
@@ -65,5 +75,9 @@ public class ProductRepository {
 					.filter((product) -> product.getId().equals(id))	// 조건 
 					.findFirst()	// 첫번째 값
 					.get();	// 얻어오기
+	}
+	
+	public void addProduct(Product product) {
+		products.add(product);
 	}
 }

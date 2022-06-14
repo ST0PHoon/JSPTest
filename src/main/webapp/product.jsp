@@ -1,10 +1,9 @@
+<%@page import="com.stoping.data.ProductRepository"%>
 <%@page import="com.stoping.domain.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:useBean id="repository" class="com.stoping.data.ProductRepository"
-	scope="session"></jsp:useBean>
 <html>
 
 <head>
@@ -29,10 +28,10 @@
 	</div>
 
 	<%
-     String id = request.getParameter("id");
-     Product product = repository.getProductById(id);
-     
-     %>
+    ProductRepository repository = ProductRepository.getInstance();
+	String id = request.getParameter("id");
+	Product product = repository.getProductById(id);
+    %>
 
 	<div class="container">
 		<div class="row">
@@ -53,7 +52,7 @@
 				<p>
 					<b>분류 : </b><%= product.getCategory() %></p>
 				<p>
-					<b>재고 수 : </b><%= product.getUnitPrice() %></p>
+					<b>재고 수 : </b><%= product.getUnitsInStock() %></p>
 				<p>
 					<%= product.getUnitPrice() %>원
 				</p>
@@ -63,7 +62,7 @@
 				<a href="products.jsp" class="btn btn-secondary">상품 목록 &raquo;</a>
 			</div>
 		</div>
-
+	</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
