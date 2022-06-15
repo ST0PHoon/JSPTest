@@ -2,6 +2,7 @@ package com.stoping.domain.repository;
 
 import java.util.List;
 import com.stoping.data.ProductRepositoryDbImpl;
+import com.stoping.data.ProductRepositoryImpl;
 import com.stoping.data.dao.MySqlProductDaoImpl;
 import com.stoping.domain.model.Product;
 
@@ -9,7 +10,10 @@ import com.stoping.domain.model.Product;
 public interface ProductRepository {
 	
 	public static ProductRepository getInstance() {
-		return new ProductRepositoryDbImpl(new MySqlProductDaoImpl());
+		// 메모리에 붙음
+		return ProductRepositoryImpl.getInstance();
+		// DB에 붙음
+//		return new ProductRepositoryDbImpl(new MySqlProductDaoImpl());
 	}
 	
 	public List<Product> getAllProducts();
