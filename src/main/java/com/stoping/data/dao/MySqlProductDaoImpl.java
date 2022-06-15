@@ -82,13 +82,36 @@ public class MySqlProductDaoImpl implements ProductDao {
 
 	@Override
 	public void update(Product product) {
-		// TODO Auto-generated method stub
-		
+		// PreparedStatement 동적 쿼리, INSERT UPDATE DELETE 여러번 할 때 고속
+		String sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_category=?, p_manufacturer=?, p_unitsInStock=?, p_condition=?";
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc", "root", "kopo37");
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
+			stmt.setString(1, product.getName());
+			stmt.setInt(2, product.getUnitPrice());
+			stmt.setString(3, product.getDescription());
+			stmt.setString(4, product.getCategory());
+			stmt.setString(5, product.getManufacturer());
+			stmt.setLong(6, product.getUnitsInStock());
+			stmt.setString(7, product.getCondition());
+			//0보다 크면 insert 됨
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new IllegalStateException("update 실패 " + e.getMessage());
+		}	
 	}
 
 	@Override
 	public void delete(Product product) {
-		// TODO Auto-generated method stub
+		// PreparedStatement 동적 쿼리, INSERT UPDATE DELETE 여러번 할 때 고속
+		String sql = "DELETE FORM product WHERE p_id=?";
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc", "root", "kopo37");
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
+			stmt.setString(1, product.getId());
+			//0보다 크면 insert 됨
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new IllegalStateException("delete 실패 " + e.getMessage());
+		}	
 		
 	}
 
