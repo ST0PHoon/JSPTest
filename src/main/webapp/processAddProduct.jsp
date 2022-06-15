@@ -1,5 +1,6 @@
+<%@page import="com.stoping.domain.repository.ProductRepository"%>
 <%@page import="com.stoping.domain.model.Product"%>
-<%@page import="com.stoping.data.ProductRepository"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -14,7 +15,7 @@ String manufacturer = request.getParameter("manufacturer");
 String category = request.getParameter("category");
 int unitsInStock = Integer.valueOf(request.getParameter("unitsInStock"));
 String condition = request.getParameter("condition");
-
+// 싱글턴 패턴
 ProductRepository repository = ProductRepository.getInstance();
 
 Product product = new Product(productId, name, unitPrice);

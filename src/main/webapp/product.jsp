@@ -1,4 +1,4 @@
-<%@page import="com.stoping.data.ProductRepository"%>
+<%@page import="com.stoping.domain.repository.ProductRepository"%>
 <%@page import="com.stoping.domain.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,10 +28,10 @@
 	</div>
 
 	<%
-    ProductRepository repository = ProductRepository.getInstance();
-	String id = request.getParameter("id");
-	Product product = repository.getProductById(id);
-    %>
+	ProductRepository repository = ProductRepository.getInstance();
+			String id = request.getParameter("id");
+			Product product = repository.getProductById(id);
+	%>
 
 	<div class="container">
 		<div class="row">

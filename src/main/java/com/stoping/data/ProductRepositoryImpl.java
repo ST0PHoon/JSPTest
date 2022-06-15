@@ -5,8 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.stoping.domain.model.Product;
+import com.stoping.domain.repository.ProductRepository;
 
-public class ProductRepository {
+public class ProductRepositoryImpl implements ProductRepository {
 	
 //	public static void main(String[] args) {
 //		// ArrayList - 일반적인 배열, 크기가 클수록 느려짐, 내부적으로 배열이라 성능이 빠르다.
@@ -31,13 +32,13 @@ public class ProductRepository {
 	// 1. static 인스턴스 준비
 	// 2. static 매서드로 인스턴스 리턴 (getInstance() 이름을 주로 씀)
 	// 3. 생성자 막기 (private)
-	private static ProductRepository instance = new ProductRepository();
+	private static ProductRepositoryImpl instance = new ProductRepositoryImpl();
 	
-	public static ProductRepository getInstance() {
+	public static ProductRepositoryImpl getInstance() {
 		return instance;
 	}
 	
-	private ProductRepository() {
+	private ProductRepositoryImpl() {
 		Product phone = new Product("P1234", "iPhone 6s", 800000);
 		phone.setDescription("4.7-inch, 1334x750 Retina HD display");
 		phone.setCategory("Smart Phone");
@@ -65,10 +66,11 @@ public class ProductRepository {
 	}
 	
 	// 모든 상품 정보를 리턴
+	@Override
 	public List<Product> getAllProducts() {
 		return products;
 	}
-	
+	@Override
 	public Product getProductById(String id) {
 		// List -> Steam (데이터의 흐름)
 		return products.stream()
@@ -76,7 +78,7 @@ public class ProductRepository {
 					.findFirst()	// 첫번째 값
 					.get();	// 얻어오기
 	}
-	
+	@Override
 	public void addProduct(Product product) {
 		products.add(product);
 	}
