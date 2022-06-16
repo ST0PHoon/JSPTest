@@ -26,18 +26,19 @@ public class ProductController extends HttpServlet {
 
 		ProductRepository repository = ProductRepository.getInstance();
 		
-		if (command.equals("/product.do")) {
+		if (command.equals("/products.do")) {
 			List<Product> products = repository.getAllProducts();
 			req.getSession().setAttribute("products", products);
 			
 		} else if (command.equals("/addProduct.do")) {
-
+			// 구현 전
 		}
 
 		System.out.println("통과!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 		// 주소를 유지하면서 products.jsp로 이동
 		req.getRequestDispatcher("products.jsp").forward(req, resp);
+		
 	}
 
 	@Override

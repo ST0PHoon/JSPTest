@@ -33,7 +33,8 @@
           	//싱글턴 패턴
           	ProductRepository repository = ProductRepository.getInstance();
           	List<Product> products = repository.getAllProducts();
-          	//List<Product> products = (List<Product>) session.getAttribute("products");
+//           	List<Product> products = (List<Product>) session.getAttribute("products");
+          	
           	for (int i = 0; i < products.size(); i++) {
             	Product product = products.get(i);
             %>
